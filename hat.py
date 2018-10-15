@@ -111,7 +111,7 @@ def hat():
             cl = ProjectClass.objects.get(text='normal')
             print('found')
         except ProjectClass.DoesNotExist:
-            cl = ProjectClass = ProjectClass.objects.create(text='normal')
+            cl = ProjectClass.objects.create(text='normal')
             print('created')
         p = Project.objects.create(name=project['name'], client=c,pub_date=timezone.now(), description='------', project_class=cl)
         
@@ -144,14 +144,16 @@ def hat():
         #handeling current year spent
         # key: current_year_spent
         current_year_spent =  float(project['current_year_spent'].strip())
-        if current_year_spent > 0:
-            cf = Finance.objects.create(project=p, title='current year spent', cash=current_year_spent,pub_date='2017-9-1', comment='-----')
+        ###    
+        #if current_year_spent > 0:
+        cf = Finance.objects.create(project=p, title='current year spent', cash=current_year_spent,pub_date='2017-9-1', comment='-----')
 
          #handeling achievment
         # key: achivement_progress
         achivement_progress =  float(project['achivement_progress'].strip())
-        if current_year_spent > 0:
-            achi = Achievement.objects.create(project=p, title='Achievement tilldate', percent=achivement_progress, pub_date=datetime(2018,9,1), comment='-----')
+        ###
+        #if current_year_spent > 0:
+        achi = Achievement.objects.create(project=p, title='Achievement tilldate', percent=achivement_progress, pub_date=datetime(2018,9,1), comment='-----')
         
          #handeling status
         # key: status

@@ -1,0 +1,39 @@
+<header>
+<style>
+td , th
+{
+border:1px solid #333;
+{
+</style>
+</header>
+
+
+<h1> follow up report from {{rd.from_year}}/{{rd.from_month}}/{{rd.from_day}} to {{rd.to_year}}/{{rd.to_month}}/{{rd.to_day}} </h1>
+
+
+<table style="border:1px solid #333;">
+  <tr>
+{% for header in table_headers %}
+    <th style="border:1px solid;">{{ header}}</th>
+{% endfor %}
+  
+  </tr>
+ 
+{% for one_info in info %}
+<tr> 
+   <td>{{ one_info.id}}</td>
+  <td>{{ one_info.client}}</td>
+  <td>{{ one_info.project_name}}</td>
+  <td>{{ one_info.plan}}</td>
+<td>{{ one_info.total_budget}}</td>
+  <td>{{ one_info.year_budget}}</td>
+  <td>{{ one_info.lybudget}}</td>
+  <td>{{ one_info.spent_before}}</td>
+  <td>{{ one_info.between}}</td>
+  <td>{{ one_info.cyf}}</td>
+  <td>{{ one_info.tfp}}</td>
+  <td>{{ one_info.pp}}</td>
+<th>{{ one_info.ap}}</td>
+{% endfor %}
+ 
+</table>

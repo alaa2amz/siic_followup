@@ -27,13 +27,20 @@ class FinanceAdmin(admin.ModelAdmin):
     list_display = ('project', 'title', 'cash','pub_date','comment')
 
 
+
+class PlanAdmin(admin.ModelAdmin):
+    # ...
+    list_display = ('project', 'year', 'cash')
+    
+
+
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Client)
 admin.site.register(ProjectClass)
 admin.site.register(Comment,)
 admin.site.register(Finance,FinanceAdmin)
 admin.site.register(Achievement)
-admin.site.register(Plan)
+admin.site.register(Plan,PlanAdmin)
 admin.site.register(Contractor)
 
 

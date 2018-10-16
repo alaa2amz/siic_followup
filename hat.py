@@ -11,7 +11,15 @@ from django.utils import timezone
 #tables = [ Project, Client,  Comment, Finance, Achievement, Plan, Contractor]
 #for table in tables:
   #  PO = table.objects.all().delete()
+PO = Project.objects.all().delete()
+PO = Client.objects.all().delete()
+PO = ProjectClass.objects.all().delete()
+PO = Finance.objects.all().delete()
+PO = Comment.objects.all().delete()
+PO = Finance.objects.all().delete()
 PO = Achievement.objects.all().delete()
+PO = Plan.objects.all().delete()
+PO = Contractor.objects.all().delete()
 #PO.save()
 
 
@@ -121,7 +129,8 @@ def hat():
             plantext = project['plan_year'].strip()
         plan_yers_array = plantext.split('/')
         print(plan_yers_array,project['name'])
-        plan_year = int(plan_yers_array[0].strip())
+        # replace 0 with one 2018-1015
+        plan_year = int(plan_yers_array[1].strip())
         cash = float(project['current_year_budget'].strip()) 
         pl = Plan.objects.create(project=p, cash=cash, year=plan_year)
 
@@ -129,9 +138,12 @@ def hat():
         # keys: total_budjet  past_years_budjet
         past_years_budjet = int(project['past_years_budjet'].strip())
         total_budjet = int(project['total_budjet'].strip())
+        #current_year_budget
+        current_year_budget = int(project['current_year_budget'].strip())
         if past_years_budjet > 0:
             prev_pl = Plan.objects.create(project=p, cash=past_years_budjet, year=plan_year-1)
-        future_budget = total_budjet - past_years_budjet
+        future_budget = total_budjet - past_years_budjet - current_year_budget
+
         if future_budget > 0:
             future_pl = Plan.objects.create(project=p, cash=future_budget, year=plan_year+1)
 

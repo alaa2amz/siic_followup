@@ -5,7 +5,8 @@ import csv
 import sys
 from datetime import datetime
 
-from maneger.models import Project, Client, ProjectClass, Comment, Finance, Achievement, Plan, Contractor
+from maneger.models import Project, Client, ProjectClass, Comment, Finance,
+Achievement, Plan, Contractor, Legacyids
 from django.utils import timezone
 
 #tables = [ Project, Client,  Comment, Finance, Achievement, Plan, Contractor]
@@ -124,7 +125,7 @@ def hat():
         p = Project.objects.create(name=project['name'], client=c,pub_date=timezone.now(), description='------', project_class=cl)
         
         #handling plans
-        
+        '''
         if (project['plan_year'].strip()) != '':
             plantext = project['plan_year'].strip()
         plan_yers_array = plantext.split('/')
@@ -133,7 +134,8 @@ def hat():
         plan_year = int(plan_yers_array[1].strip())
         cash = float(project['current_year_budget'].strip()) 
         pl = Plan.objects.create(project=p, cash=cash, year=plan_year)
-
+        '''
+        '''
         #tentaitive past and future plans
         # keys: total_budjet  past_years_budjet
         past_years_budjet = int(project['past_years_budjet'].strip())
@@ -146,7 +148,7 @@ def hat():
 
         if future_budget > 0:
             future_pl = Plan.objects.create(project=p, cash=future_budget, year=plan_year+1)
-
+        '''
         #handeling past spent
         # key: past_total_spent
         past_total_spent = float(project['past_total_spent'].strip())
@@ -171,6 +173,9 @@ def hat():
         # key: status
         status = project['status']
         sta = Comment.objects.create(project=p, text=status, pub_date=str(plan_year)+'-9-1')
+
+        etimad = int(project['ettimad_no'].strip())
+        et = LegacyIDs.objects.create(project=p, eetimad_no=etimad)
 
 
 

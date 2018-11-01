@@ -5,8 +5,7 @@ import csv
 import sys
 from datetime import datetime
 
-from maneger.models import Project, Client, ProjectClass, Comment, Finance,
-Achievement, Plan, Contractor, Legacyids
+from maneger.models import Project, Client, ProjectClass, Comment, Finance, Achievement, Plan, Contractor, Legacyids
 from django.utils import timezone
 
 #tables = [ Project, Client,  Comment, Finance, Achievement, Plan, Contractor]
@@ -172,10 +171,10 @@ def hat():
          #handeling status
         # key: status
         status = project['status']
-        sta = Comment.objects.create(project=p, text=status, pub_date=str(plan_year)+'-9-1')
+        sta = Comment.objects.create(project=p, text=status, pub_date='2018'+'-9-1')
 
         etimad = int(project['ettimad_no'].strip())
-        et = LegacyIDs.objects.create(project=p, eetimad_no=etimad)
+        et = Legacyids.objects.create(project=p, eetimad_no=etimad)
 
 
 

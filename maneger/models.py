@@ -1,9 +1,6 @@
 from django.db import models
 
-class Legacyids(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE) 
-    project_code = models.IntegerField(null=True)
-    eetimad_no = models.IntegerField(null=True)
+
 
 class Client(models.Model):
     name = models.CharField(max_length=200)
@@ -58,7 +55,10 @@ class Project(models.Model):
         return str((sum( [y.cash for y in self.plan_set.all()])))
 
 
-
+class Legacyids(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE) 
+    project_code = models.IntegerField(null=True)
+    eetimad_no = models.IntegerField(null=True)
 
 class Plan(models.Model):
     # project = models.ManyToManyField(Project)

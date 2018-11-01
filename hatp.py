@@ -5,8 +5,7 @@ import csv
 import sys
 from datetime import datetime
 
-from maneger.models import Project, Client, ProjectClass, Comment, Finance,
-Achievement, Plan, Contractor, Legacyids
+from maneger.models import Project, Client, ProjectClass, Comment, Finance, Achievement, Plan, Contractor, Legacyids
 from django.utils import timezone
 
 # 0 mosalsal
@@ -58,18 +57,18 @@ def hatp():
             if row[0] in skippers:
                 continue
         
-           
-        
+           ##
+            print(row[keys['e_2013']].strip(),'---000----')
             one_project = dict(
                 ettimad_no=int(row[keys['eetimad_no']].strip()),
-                e_2013=int(row[keys['e_2013']].strip()),
-                e_2015=int(row[keys['e_2015']].strip()),
-                e_2016=int(row[keys['e_2016']].strip()),
-                e_2017=int(row[keys['e_2017']].strip()),
-                e_2018=int(row[keys['e_2018']].strip()),
-                e_2019=int(row[keys['e_2019']].strip()),
-                e_2020=int(row[keys['e_2020']].strip()),
-                e_2021=int(row[keys['e_2021']].strip()),
+                e_2013=0 if row[keys['e_2013']].strip()=='' else e_2013=int(row[keys['e_2013']].strip()),
+                e_2015=0 if row[keys['e_2015']].strip()=='' else e_2015=int(row[keys['e_2015']].strip()),
+                e_2016=0 if row[keys['e_2016']].strip()=='' else e_2016=int(row[keys['e_2016']].strip()),
+                e_2017=0 if row[keys['e_2017']].strip()=='' else e_2017=int(row[keys['e_2017']].strip()),
+                e_2018=0 if row[keys['e_2018']].strip()=='' else e_2018=int(row[keys['e_2018']].strip()),
+                e_2019=0 if row[keys['e_2019']].strip()=='' else e_2019=int(row[keys['e_2019']].strip()),
+                e_2020=0 if row[keys['e_2020']].strip()=='' else e_2020=int(row[keys['e_2020']].strip()),
+                0 if '' else e_2021=int(row[keys['e_2021']].strip()),
                 comment=row[keys['e_2021']].strip()
                 )
 
@@ -98,16 +97,16 @@ def hatp():
       
     
      
-        #handling plans
         
-        if (project['plan_year'].strip()) != '':
-            plantext = project['plan_year'].strip()
-        plan_yers_array = plantext.split('/')
-        print(plan_yers_array,project['name'])
+        
+            if (project['plan_year'].strip()) != '':
+                plantext = project['plan_year'].strip()
+            plan_yers_array = plantext.split('/')
+            print(plan_yers_array,project['name'])
         # replace 0 with one 2018-1015
-        plan_year = int(plan_yers_array[1].strip())
-        cash = float(project['current_year_budget'].strip()) 
-        pl = Plan.objects.create(project=p, cash=cash, year=plan_year)
+            plan_year = int(plan_yers_array[1].strip())
+            cash = float(project['current_year_budget'].strip()) 
+            pl = Plan.objects.create(project=p, cash=cash, year=plan_year)
 
         #tentaitive past and future plans
         # keys: total_budjet  past_years_budjet
@@ -147,7 +146,7 @@ def hatp():
         status = project['status']
         sta = Comment.objects.create(project=p, text=status, pub_date=str(plan_year)+'-9-1')
     
-        et = 
+        #et = 
 
 
         
